@@ -18,39 +18,50 @@
 #endif
 
 /*
-	RF·Î Àü¼ÛµÉ FULL FRAME SIZE
+	RFë¡œ ì „ì†¡ë  FULL FRAME SIZE
 */
 #define RF_FRAME_SIZE					106
 
 /*
-	RF·Î Àü¼ÛµÉ FRAME ÀÇ LAST BLOCKÀ» Á¦¿ÜÇÑ ¸ðµç BLOCKÀÇ BYTE SIZE
+	RFë¡œ ì „ì†¡ë  FRAME ì˜ LAST BLOCKì„ ì œì™¸í•œ ëª¨ë“  BLOCKì˜ BYTE SIZE
 */
 #define	NBYTE_DIVISION					12
 /*
-	RF·Î Àü¼ÛµÉ FRAME ÀÇ LAST BLOCK ÀÇ BYTE SIZE
-	LAST DIVISIONÀÌ 0ÀÏ °æ¿ì ¿¹¿ÜÃ³¸® ÇÊ¿ä(±ÍÂú¾Æ¼­ ¾ÈÇÔ)
+	RFë¡œ ì „ì†¡ë  FRAME ì˜ LAST BLOCK ì˜ BYTE SIZE
+	LAST DIVISIONì´ 0ì¼ ê²½ìš° ì˜ˆì™¸ì²˜ë¦¬ í•„ìš”(ê·€ì°®ì•„ì„œ ì•ˆí•¨)
 */
 #define	NBYTE_LAST_DIVISION			(RF_FRAME_SIZE%NBYTE_DIVISION)
 
 /*
-	RF·Î Àü¼ÛµÉ FRAME ÀÇ LAST BLOCKÀ» Á¦¿ÜÇÑ ¸ðµç BLOCKÀÇ BIT SIZE
+	RFë¡œ ì „ì†¡ë  FRAME ì˜ LAST BLOCKì„ ì œì™¸í•œ ëª¨ë“  BLOCKì˜ BIT SIZE
 */
 #define N_BITS 							(NBYTE_DIVISION*8)
 /*
-	RF·Î Àü¼ÛµÉ FRAME ÀÇ LAST BLOCK BIT SIZE
+	RFë¡œ ì „ì†¡ë  FRAME ì˜ LAST BLOCK BIT SIZE
 */
 #define N_LAST_BITS 						(NBYTE_LAST_DIVISION*8)
+
 /*
-	RF·Î Àü¼ÛµÉ FRAME ÀÇ TOTAL BITS SIZE
+	RFë¡œ ì „ì†¡ë  FRAME ì˜ TOTAL BITS SIZE
 */
 #define N_FULL_BITS						(RF_FRAME_SIZE*8)
 
+/*Â 
+	RFë¡œ ìˆ˜ì‹ ëœ FEC FRAME ì˜ BITS SIZE
+*/
+#define FEC_DEC_BIT_LENÂ Â Â Â Â (N_BITS*2) //12*8*2
+
+/*Â 
+	RFë¡œ ìˆ˜ì‹ ëœ FEC FRAME ì˜ LAST BLOCK BITS SIZE
+*/
+#define FEC_DEC_LAST_BIT_LENÂ Â Â (N_LAST_BITS*2) //10*8*2
+
 /*
-	RF·Î Àü¼ÛµÉ  SEGMENTED FRAMEÀÇ FEC FRAME SIZE 
+	RFë¡œ ì „ì†¡ë   SEGMENTED FRAMEì˜ FEC FRAME SIZE 
 */
 #define FEC_SYMBOL_LEN				(NBYTE_DIVISION*2)
 /*
-	RF·Î Àü¼ÛµÉ FULL FRAME ÀÇ FEC FRAME SIZE
+	RFë¡œ ì „ì†¡ë  FULL FRAME ì˜ FEC FRAME SIZE
 */
 #define FEC_FULL_SYMBOL_LEN		(((((RF_FRAME_SIZE*8)+(CONSTRAINT_LEN_K-1))*2)>>3)+PAD_SIZE)
 
