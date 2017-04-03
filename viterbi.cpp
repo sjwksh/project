@@ -1,28 +1,25 @@
 /*
  * viterbi.c  --  viterbi encoder/decoder + PRIMITIVE Interleaver
  *
- * Created: 2017-04-03 ø¿»ƒ 8:34:15
+ * Created: 2017-04-03 8:34:15
  *  Author: seobi
  */ 
 
 #include "viterbi.h"
 
 #define PRIMITIVE_ROOT					31
-#define FEC_PRIMITIVE_BIT_LEN			(NBYTE_DIVISION*8*2)
-
+#define FEC_PRIMITIVE_BIT_LEN				(NBYTE_DIVISION*8*2)
+#define FEC_PRIMITIVE_LAST_BIT_LEN¬†¬†			((NBYTE_LAST_DIVISION*8+(CONSTRAINT_LEN_K-1))*2)
 
 #if CONSTRAINT_LEN_K == 3 
 #define	V27POLYA	0x07
 #define	V27POLYB	0x05
-#define FEC_PRIMITIVE_LAST_BIT_LEN		((NBYTE_LAST_DIVISION*8+(CONSTRAINT_LEN_K-1))*2)
 #elif CONSTRAINT_LEN_K == 4
 #define	V27POLYA	0x0F
 #define	V27POLYB	0x0B
-#define FEC_PRIMITIVE_LAST_BIT_LEN		((NBYTE_LAST_DIVISION*8+(CONSTRAINT_LEN_K-1))*2)
 #elif CONSTRAINT_LEN_K == 5 //0x17, 0x19   |   0x13, 0x1b
 #define	V27POLYA	0x13
 #define	V27POLYB	0x1b
-#define FEC_PRIMITIVE_LAST_BIT_LEN		((NBYTE_LAST_DIVISION*8+(CONSTRAINT_LEN_K-1))*2)
 #else
 #error not support CONSTRAINT_LEN_K
 #endif
@@ -1069,9 +1066,9 @@ unsigned char *encode_last_fec( 	unsigned char *data,
 //#define INTERLEAVER_DEBUG
 
 #ifdef INTERLEAVER_DEBUG
-short g_check[FEC_PRIMITIVE_BIT_LEN];  // 1510 (94±‚¡ÿ)
-short g_Interleaver[FEC_PRIMITIVE_BIT_LEN];  // 192 (12±‚¡ÿ)
-short g_Interleaver_last[FEC_PRIMITIVE_LAST_BIT_LEN];  // 166 (10±‚¡ÿ)
+short g_check[FEC_PRIMITIVE_BIT_LEN];  // 1510 (94¬±√¢√Å√ò)
+short g_Interleaver[FEC_PRIMITIVE_BIT_LEN];  // 192 (12¬±√¢√Å√ò)
+short g_Interleaver_last[FEC_PRIMITIVE_LAST_BIT_LEN];  // 166 (10¬±√¢√Å√ò)
 #endif
 
 static void init_primitive_interleaver( void )
